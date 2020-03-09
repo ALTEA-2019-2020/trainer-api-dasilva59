@@ -1,9 +1,8 @@
 package com.miage.altea.trainer_api.bo;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import org.springframework.context.annotation.Bean;
+
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -14,7 +13,8 @@ public class Trainer {
 
     @ElementCollection
     private List<Pokemon> team;
-
+    @Column
+    private String password;
 
     public Trainer() {
     }
@@ -37,5 +37,11 @@ public class Trainer {
 
     public void setTeam(List<Pokemon> team) {
         this.team = team;
+    }
+    @Bean
+    public String getPassword() {return this.password;
+    }
+    @Bean
+    public void setPassword(String password) {this.password=password;
     }
 }
