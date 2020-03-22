@@ -4,7 +4,9 @@ import com.miage.altea.trainer_api.bo.Trainer;
 import com.miage.altea.trainer_api.service.TrainerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+@EnableSwagger2
 @RestController
 @RequestMapping(value ="/trainers/")
 public class TrainerController {

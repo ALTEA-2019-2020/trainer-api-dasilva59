@@ -7,6 +7,21 @@
 	"item": [
 		{
 			"name": "AddTrainer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dc5ed729-84fc-4d1f-9551-768348702e82",
+						"exec": [
+							"pm.test(\"Bug Catcher\", function () {\r",
+							"    var bug = pm.response.json();\r",
+							"    pm.expect(bug.name).to.eq(\"Bug Catcher\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "basic",
@@ -35,12 +50,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/trainers/",
-					"protocol": "http",
+					"raw": "https://trainer-api-dasilva59.herokuapp.com/trainers/",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"trainer-api-dasilva59",
+						"herokuapp",
+						"com"
 					],
-					"port": "8080",
 					"path": [
 						"trainers",
 						""
@@ -51,16 +67,47 @@
 		},
 		{
 			"name": "Trainers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f8466bca-f811-4d3c-a7f2-2295d72d6a54",
+						"exec": [
+							"pm.test(\"all trainers \", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length).to.eq(3);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "6239a2ce-fd68-431e-8775-6d27fc518336",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/trainers/",
-					"protocol": "http",
+					"raw": "https://trainer-api-dasilva59.herokuapp.com/trainers/",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"trainer-api-dasilva59",
+						"herokuapp",
+						"com"
 					],
-					"port": "8080",
 					"path": [
 						"trainers",
 						""
@@ -90,12 +137,13 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/trainers/Bug Catcher",
-					"protocol": "http",
+					"raw": "https://trainer-api-dasilva59.herokuapp.com/trainers/Bug Catcher",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"trainer-api-dasilva59",
+						"herokuapp",
+						"com"
 					],
-					"port": "8080",
 					"path": [
 						"trainers",
 						"Bug Catcher"
