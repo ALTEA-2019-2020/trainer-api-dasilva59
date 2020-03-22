@@ -1,6 +1,4 @@
 package com.miage.altea.trainer_api.repository;
-
-
 import com.miage.altea.trainer_api.bo.Pokemon;
 import com.miage.altea.trainer_api.bo.Trainer;
 import org.junit.jupiter.api.Test;
@@ -16,7 +14,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class TrainerRepositoryTest {
 
     @Autowired
-    private TrainerRepository repository;
+    public TrainerRepository repository;
+
 
     @Test
     void trainerRepository_shouldExtendsCrudRepository() throws NoSuchMethodException {
@@ -31,6 +30,7 @@ class TrainerRepositoryTest {
     @Test
     void testSave(){
         var ash = new Trainer("Ash");
+        ash.setPassword("ash");
 
         repository.save(ash);
 

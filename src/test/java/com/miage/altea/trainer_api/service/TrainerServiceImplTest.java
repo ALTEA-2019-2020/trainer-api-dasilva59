@@ -35,6 +35,8 @@ class TrainerServiceImplTest {
         var trainerService = new TrainerServiceImpl(trainerRepo);
 
         var ash = new Trainer();
+        ash.setName("ASH2");
+        ash.setPassword("ASH2_password");
         trainerService.createTrainer(ash);
 
         verify(trainerRepo).save(ash);

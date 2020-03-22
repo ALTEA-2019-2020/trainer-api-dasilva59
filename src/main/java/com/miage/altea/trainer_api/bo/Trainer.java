@@ -1,5 +1,6 @@
 package com.miage.altea.trainer_api.bo;
 
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import org.springframework.context.annotation.Bean;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ public class Trainer {
     private List<Pokemon> team;
     @Column
     private String password;
+
 
     public Trainer() {
     }

@@ -1,5 +1,6 @@
 package com.miage.altea.trainer_api.controller;
 
+import com.miage.altea.trainer_api.bo.Pokemon;
 import com.miage.altea.trainer_api.bo.Trainer;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -9,6 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -40,7 +43,13 @@ class TrainerControllerIntegrationTest {
         assertNotNull(responseEntity);
         assertEquals(401, responseEntity.getStatusCodeValue());
     }
-
+    @Test
+    void getAllTrainers_shouldReturnNotEmptyvar() {
+        var trainers = this.restTemplate
+                .withBasicAuth(username, password)
+                .getForObject("http://localhost:" + port + "/trainers/", Trainer[].class);
+        assertNotNull(trainers);
+    }
     @Test
     void getTrainer_withNameAsh_shouldReturnAsh() {
         var ash = this.restTemplate
@@ -61,15 +70,47 @@ class TrainerControllerIntegrationTest {
     }
 
 
+
     @Test
-    void getAllTrainers_shouldReturnAshAndMisty() {
+    void deleteTrainerShouldNotReturnTrainer(){
         var trainers = this.restTemplate
                 .withBasicAuth(username, password)
                 .getForObject("http://localhost:" + port + "/trainers/", Trainer[].class);
         assertNotNull(trainers);
-        assertEquals(2, trainers.length);
+        var number=trainers.length;
+        this.restTemplate
+                .withBasicAuth(username, password)
+                .delete("http://localhost:" + port + "/trainers/Ash", String[].class);
+        var trainers2 = this.restTemplate
+                .withBasicAuth(username, password)
+                .getForObject("http://localhost:" + port + "/trainers/", Trainer[].class);
+        assertNotNull(trainers2);
+        assertEquals("Misty", trainers2[0].getName());
 
-        assertEquals("Ash", trainers[0].getName());
-        assertEquals("Misty", trainers[1].getName());
     }
+
+    @Test
+    void addNewTrainerShouldReturnNewTrainer(){
+        var newTrainer = new Trainer("New trainer");
+        var p = new Pokemon(999, 18);
+        newTrainer.setTeam(List.of(p));
+        newTrainer.setPassword("newTrainer_password");
+        var trainers = this.restTemplate
+                .withBasicAuth(username, password)
+                .postForObject("http://localhost:" + port + "/trainers/",newTrainer,Trainer.class);                ;
+        assertNotNull(trainers);
+        var trainers3 = this.restTemplate
+                .withBasicAuth(username, password)
+                .getForObject("http://localhost:" + port + "/trainers/", Trainer[].class);
+        assertNotNull(trainers3);
+        assertEquals(3,trainers3.length);
+        assertEquals("New trainer", trainers3[2].getName());
+        this.restTemplate
+                .withBasicAuth(username, password)
+                .delete("http://localhost:" + port + "/trainers/New Trainer", String[].class);
+
+    }
+
+
+
 }

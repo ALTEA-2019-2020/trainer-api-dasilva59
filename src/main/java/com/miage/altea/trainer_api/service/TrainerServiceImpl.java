@@ -2,7 +2,9 @@ package com.miage.altea.trainer_api.service;
 
 import com.miage.altea.trainer_api.bo.Trainer;
 import com.miage.altea.trainer_api.repository.TrainerRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
 
 @Service
 public class TrainerServiceImpl implements TrainerService {
@@ -28,6 +30,8 @@ public class TrainerServiceImpl implements TrainerService {
 
     @Override
     public Trainer createTrainer(Trainer trainer) {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        trainer.setPassword(bCryptPasswordEncoder.encode(trainer.getPassword()));
         return this.trainerRepository.save(trainer);
     }
 

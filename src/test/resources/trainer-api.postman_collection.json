@@ -1,0 +1,109 @@
+{
+	"info": {
+		"_postman_id": "b0153e90-dec2-4917-8bc3-e624830b53d9",
+		"name": "trainer-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AddTrainer",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "6239a2ce-fd68-431e-8775-6d27fc518336",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Bug Catcher\",\n    \"team\": [\n        {\n            \"pokemonTypeId\": 13,\n            \"level\": 6\n        },\n        {\n            \"pokemonTypeId\": 10,\n            \"level\": 6\n        }\n    ],\n    \"password\":\t\"test\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/trainers/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trainers",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Trainers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/trainers/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trainers",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteTrainer",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "6239a2ce-fd68-431e-8775-6d27fc518336",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/trainers/Bug Catcher",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trainers",
+						"Bug Catcher"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

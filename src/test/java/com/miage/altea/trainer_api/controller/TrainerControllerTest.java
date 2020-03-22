@@ -50,7 +50,7 @@ public class TrainerControllerTest {
 
         var requestMappingAnnotation =
                 TrainerController.class.getAnnotation(RequestMapping.class);
-        assertArrayEquals(new String[]{"/trainers"}, requestMappingAnnotation.value());
+        assertArrayEquals(new String[]{"/trainers/"}, requestMappingAnnotation.value());
     }
 
     @Test
