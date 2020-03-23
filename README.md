@@ -21,4 +21,4 @@ Les routes disponibles sont les suivantes:
   
   - DELETE: /trainers/{name} supprime le trainer {name}
   
-  Une collection postman 
+  Une collection postman  	trainer-api.postman_collection.json est diponible dans src/test/resources.
